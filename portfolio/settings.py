@@ -59,14 +59,14 @@ MIDDLEWARE = [
 ]
 
 
-REST_FRAMEWOR = {
-    'DEFAULT_AUTHINTCATION_CLASSES': [
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         "rest_framework.authentication.TokenAuthentication"
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permission.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ]
 }
 
