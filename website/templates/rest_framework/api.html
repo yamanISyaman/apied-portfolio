@@ -1,0 +1,25 @@
+{% extends 'rest_framework/base.html' %}
+
+{% block title %}
+portfolio API
+{% endblock %}
+
+{% block style %}
+    {{ block.super }}
+    <style>
+        div .navbar {
+            border-top-color: #8d00ff;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+<a href="/" class="navbar-brand">
+    Portfolio Website Rest API 
+</a>
+{% endblock %}
+
+{% block userlinks %}
+<li><a href="/swagger">Swagger API</a></li>
+<li><a href="/api/v1/auth/login/?next=/api/v1/exps/">Log in</a></li>
+{% endblock %}
