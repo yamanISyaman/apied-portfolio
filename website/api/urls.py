@@ -10,5 +10,6 @@ router.register('projects', views.ProjectViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('data', views.get_static_data, name="get_data"),
     path('auth/', include('rest_framework.urls'), name="rest_framework"),
 ]
