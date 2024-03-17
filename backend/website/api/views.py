@@ -1,10 +1,11 @@
-from rest_framework import permissions, viewsets, response
+from rest_framework import permissions, viewsets, response, generics
 from rest_framework.decorators import api_view
-from website.models import EXP, Project, CERT
-from website.api.serializers import EXPSerializer, ProjectSerializer, CertSerializer
+from website.models import EXP, Project, CERT,  User
+from website.api.serializers import EXPSerializer, ProjectSerializer, CertSerializer, UserSerializer
 from portfolio.settings import BASE_DIR
 
 import json
+
 
 class CertViewSet(viewsets.ModelViewSet):
     queryset = CERT.objects.all()
@@ -19,6 +20,12 @@ class EXPViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    lookup_field = "username"
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 @api_view(['GET', 'Post'])
