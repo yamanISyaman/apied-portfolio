@@ -78,9 +78,8 @@ SWAGGER_SETTINGS = {
         "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
         "Basic": {"type": "basic"}
     },
+    'USE_SESSION_AUTH': False,
 }
-
-LOGOUT_URL = 'rest_framework:logout'
 
 
 ROOT_URLCONF = 'portfolio.urls'
