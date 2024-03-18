@@ -66,7 +66,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        "rest_framework.authentication.TokenAuthentication"
+        'rest_framework.authentication.TokenAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
@@ -77,8 +77,10 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
         "Basic": {"type": "basic"}
-    }
+    },
 }
+
+LOGOUT_URL = 'rest_framework:logout'
 
 
 ROOT_URLCONF = 'portfolio.urls'

@@ -1,6 +1,7 @@
 from rest_framework import permissions, viewsets, response, generics
 from rest_framework.decorators import api_view
 from website.models import EXP, Project, CERT,  User
+from website.api.permissions import UserModifyOrReadOnly
 from website.api.serializers import EXPSerializer, ProjectSerializer, CertSerializer, UserSerializer
 from portfolio.settings import BASE_DIR
 
@@ -10,6 +11,7 @@ import json
 class CertViewSet(viewsets.ModelViewSet):
     queryset = CERT.objects.all()
     serializer_class = CertSerializer
+    permission_classes = [UserModifyOrReadOnly]
 
 
 class EXPViewSet(viewsets.ModelViewSet):
