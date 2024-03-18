@@ -18,6 +18,7 @@ urlpatterns = [
 urlpatterns = format_suffix_patterns(urlpatterns)
 
 urlpatterns += [
-    path('auth/', include('rest_framework.urls'), name="rest_framework"),
     path('', include(router.urls)),
+    path('auth/logout/', views.LogoutView.as_view(), name='logout'), 
+    path('auth/', include('rest_framework.urls'), name="rest_framework"),
 ]

@@ -1,5 +1,8 @@
+from django.contrib.auth import logout
 from rest_framework import permissions, viewsets, response, generics
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from django.shortcuts import redirect
 from website.models import EXP, Project, CERT,  User
 from website.api.permissions import UserModifyOrReadOnly
 from website.api.serializers import EXPSerializer, ProjectSerializer, CertSerializer, UserSerializer
@@ -28,6 +31,18 @@ class UserDetail(generics.RetrieveAPIView):
     lookup_field = "username"
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class LogoutView(APIView):
+    """
+    Djano 5 does not have GET logout route anymore, so Django Rest Framework UI can't log out.
+    This is a workaround until Django Rest Framework implements POST logout.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        logout(request)
+        return redirect('/')
 
 
 @api_view(['GET', 'Post'])
