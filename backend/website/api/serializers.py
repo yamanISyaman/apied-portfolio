@@ -3,24 +3,37 @@ from website.models import CERT, EXP, Project, User
 
 
 class CertSerializer(serializers.ModelSerializer):
-    user = serializers.HyperlinkedRelatedField(
-        queryset=User.objects.all(),
-        view_name="user-detail-api",
-        lookup_field='username'
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
     )
     class Meta:
         model = CERT
-        fields = "__all__"
+        fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class EXPSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
     class Meta:
         model = EXP
-        fields = "__all__"
+        fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class ProjectSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
     class Meta:
         model = Project
-        fields = "__all__"
+        fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class UserSerializer(serializers.ModelSerializer):
