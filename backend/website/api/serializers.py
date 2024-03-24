@@ -17,6 +17,7 @@ class EXPSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(),
     )
+    
     class Meta:
         model = EXP
         fields = '__all__'
@@ -38,6 +39,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     certs = CertSerializer(many=True)
+    exps = EXPSerializer(many=True)
+    projects = ProjectSerializer(many=True)
+
     class Meta:
         model = User
-        fields = ['email', 'full_name', 'username', 'certs']
+        fields = ['email', 'full_name', 'username', 'certs', 'projects', 'exps']

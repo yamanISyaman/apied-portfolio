@@ -19,17 +19,20 @@ class CertViewSet(viewsets.ModelViewSet):
 class EXPViewSet(viewsets.ModelViewSet):
     queryset = EXP.objects.all()
     serializer_class = EXPSerializer
+    permission_classes = [UserModifyOrReadOnly]
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    permission_classes = [UserModifyOrReadOnly]
 
 
 class UserDetail(generics.RetrieveAPIView):
     lookup_field = "username"
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [UserModifyOrReadOnly]
 
 
 @api_view(['GET', 'Post'])
