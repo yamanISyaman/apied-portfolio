@@ -18,6 +18,13 @@ class CertViewSet(viewsets.ModelViewSet):
     serializer_class = CertSerializer
     permission_classes = [UserModifyOrReadOnly]
 
+
+    # filtering on user
+    def get_queryset(self):
+
+        return self.queryset.filter(user=self.request.user)
+
+
     @method_decorator(cache_page(600))
     @method_decorator(vary_on_cookie)
     @method_decorator(vary_on_headers("Authorization"))
@@ -37,6 +44,13 @@ class EXPViewSet(viewsets.ModelViewSet):
     serializer_class = EXPSerializer
     permission_classes = [UserModifyOrReadOnly]
 
+
+    # filtering on user
+    def get_queryset(self):
+
+        return self.queryset.filter(user=self.request.user)
+
+
     @method_decorator(cache_page(600))
     @method_decorator(vary_on_cookie)
     @method_decorator(vary_on_headers("Authorization"))
@@ -55,6 +69,12 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [UserModifyOrReadOnly]
+
+
+    # filtering on user
+    def get_queryset(self):
+
+        return self.queryset.filter(user=self.request.user)
 
 
     @method_decorator(cache_page(600))

@@ -77,6 +77,12 @@ class UserApiTestCase(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(resp.json()), 1)
 
+        self.client.logout()
+        self.client.login(username="test1", password="password")
+
+        resp2 = self.client.get("/api/v1/exps/")
+        self.assertEqual(len(resp2.json()), 0)
+
 
     # test the retrieval of an object
     def test_object_retrieve(self):
@@ -85,3 +91,9 @@ class UserApiTestCase(TestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.json()['id'], 1)
+
+        self.client.logout()
+        self.client.login(username="test1", password="password")
+
+        resp2 = self.client.get("/api/v1/exps/1/")
+        self.assertEqual(resp2.status_code, 404)
