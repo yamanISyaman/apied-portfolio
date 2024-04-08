@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from website.models import CERT, EXP, Project, User
+from website.models import CERT, EXP, Project, User, SKILL
 
 
 class CertSerializer(serializers.ModelSerializer):
@@ -12,6 +12,19 @@ class CertSerializer(serializers.ModelSerializer):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class SkillSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
+    class Meta:
+        model = SKILL
+        fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 class EXPSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(

@@ -10,6 +10,7 @@ router = routers.DefaultRouter()
 router.register('certs', views.CertViewSet)
 router.register('exps', views.EXPViewSet)
 router.register('projects', views.ProjectViewSet)
+router.register('skills', views.SkillViewSet)
 
 
 schema_view = get_schema_view(
