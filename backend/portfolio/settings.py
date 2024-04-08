@@ -22,8 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Dev(Configuration):
     
-
-
+    
     AUTH_USER_MODEL = "website.User" 
 
     # Quick-start development settings - unsuitable for production

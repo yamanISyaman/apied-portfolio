@@ -25,7 +25,7 @@ class CERT(models.Model):
 class SKILL(models.Model):
     title = models.CharField(max_length=25, blank=False)
     description = models.CharField(max_length=25, blank=True)
-    image = models.ImageField(upload_to="skills/", blank=True)
+    image = models.FileField(upload_to="skills/", blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="skils")
 
 
