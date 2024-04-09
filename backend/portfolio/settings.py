@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from configurations import Configuration, starter
+from configurations import Configuration, importer
 from dotenv import load_dotenv
 import os
 
@@ -38,6 +38,7 @@ class Dev(Configuration):
 
 
     # Application definition
+    CORS_ORIGIN_ALLOW_ALL = True
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -46,6 +47,7 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'corsheaders',
         'website',
         'rest_framework',
         'rest_framework.authtoken',
@@ -53,6 +55,7 @@ class Dev(Configuration):
     ]
 
     MIDDLEWARE = [
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -81,7 +84,6 @@ class Dev(Configuration):
         },
         'USE_SESSION_AUTH': False,
     }
-
 
     ROOT_URLCONF = 'portfolio.urls'
 
@@ -162,7 +164,7 @@ class Dev(Configuration):
 
 class Prod(Dev):
 
-    starter.install()
+    importer.install()
 
     DEBUG = False
     ALLOWED_HOSTS = ["*"]
