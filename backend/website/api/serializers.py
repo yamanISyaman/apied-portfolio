@@ -54,7 +54,8 @@ class UserSerializer(serializers.ModelSerializer):
     certs = CertSerializer(many=True)
     exps = EXPSerializer(many=True)
     projects = ProjectSerializer(many=True)
+    skills = SkillSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ['email', 'full_name', 'username', 'certs', 'projects', 'exps']
+        fields = ['email', 'full_name', 'username', 'resume', 'image', 'about', 'phone', 'telegram', 'github', 'certs', 'projects', 'exps', 'skills']

@@ -122,7 +122,7 @@ class UserDetail(generics.RetrieveAPIView):
     lookup_field = "username"
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [UserModifyOrReadOnly]
+    #permission_classes = [UserModifyOrReadOnly]
 
     @method_decorator(cache_page(600))
     def retrieve(self, *args, **kwargs):
