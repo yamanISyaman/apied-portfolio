@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from configurations import Configuration
+from configurations import Configuration, starter
 from dotenv import load_dotenv
 import os
 
@@ -161,6 +161,8 @@ class Dev(Configuration):
 
 
 class Prod(Dev):
+
+    starter.install()
 
     DEBUG = False
     ALLOWED_HOSTS = ["*"]

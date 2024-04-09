@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 
 import os
 
-from configurations.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio.settings')
 os.environ.setdefault('DJANGO_CONFIGURATION', 'Prod')
+
+from configurations.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
