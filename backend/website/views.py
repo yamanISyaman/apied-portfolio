@@ -17,25 +17,35 @@ def index(request):
 @csrf_exempt
 def contact_view(request, username):
     if request.method == "POST":
-        message = "Thanks for contacting with us"
+
+        data = json.loads(request.body.decode())
+
         try:
             u = User.objects.get(username=username)
+
         except:
-            message = "Bad Request! Refresh the page and try again"
-        data = json.loads(request.body.decode())
+
+            return JsonResponse(
+                {
+                    "type": "danger",
+                    "message": "Bad Request! Refresh the page and try again",
+                },
+                status=401,
+            )
 
         send_mail(
             f"Portfolio Contact message from {data['name']}",
             f"from: {data['name']}, email: {data['email']}\nMessage: {data['message']}",
             settings.EMAIL_HOST_USER,
             [
-                os.environ["EMAIL_ADMIN"],
+                u.email,
             ],
-        )
+        )        
 
         return JsonResponse(
                 {
-                    "message": message,
+                    "type": "success",
+                    "message": "Thanks for contacting with us",
                 },
                 status=200,
             )
