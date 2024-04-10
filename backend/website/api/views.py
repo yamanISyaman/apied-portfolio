@@ -122,22 +122,8 @@ class UserDetail(generics.RetrieveAPIView):
     lookup_field = "username"
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    #permission_classes = [UserModifyOrReadOnly]
+    permission_classes = [UserModifyOrReadOnly]
 
-    @method_decorator(cache_page(6))
+    @method_decorator(cache_page(60))
     def retrieve(self, *args, **kwargs):
         return super(UserDetail, self).retrieve(*args, **kwargs)
-
-
-@api_view(['GET', 'Post'])
-def get_static_data(request):
-    with open(BASE_DIR / 'statics/data.json', 'r+') as f:
-        if request.method == "GET":
-            data = json.load(f)
-            return(response.Response(data))
-        else:
-            try:
-                json.dump(request.data, f)
-            except:
-                return response.Response("POST requests must be a valid json")
-            return response.Response(request.data)
