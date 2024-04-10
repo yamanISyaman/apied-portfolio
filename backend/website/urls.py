@@ -10,5 +10,6 @@ import os
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('contact/<str:username>', views.contact_view, name="contact"),
     path('api/v1/', include("website.api.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
