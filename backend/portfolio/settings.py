@@ -52,6 +52,7 @@ class Dev(Configuration):
         'rest_framework',
         'rest_framework.authtoken',
         'drf_yasg',
+        'django_cleanup.apps.CleanupConfig',
     ]
 
     MIDDLEWARE = [
