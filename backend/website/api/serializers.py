@@ -58,8 +58,20 @@ class ProjectSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     certs = CertSerializer(many=True)
     exps = EXPSerializer(many=True)
-    projects = ProjectSerializer(many=True)
+    projects = serializers.SerializerMethodField('get_user_projects')
     skills = SkillSerializer(many=True)
+
+    def get_user_projects(self, instance):
+        projects = Project.objects.filter(user=instance).order_by('created_at').reverse()
+        return ProjectSerializer(projects, many=True, context=self.context).data
+    
+    def get_user_certs(self, instance):
+        certs = CERT.objects.filter(user=instance).order_by('granted_on').reverse()
+        return CertSerializer(certs, many=True, context=self.context).data
+    
+    def get_user_exps(self, instance):
+        exps = EXP.objects.filter(user=instance).order_by('end_date').reverse()
+        return EXPSerializer(exps, many=True, context=self.context).data
 
     class Meta:
         model = User

@@ -124,6 +124,6 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     permission_classes = [UserModifyOrReadOnly]
 
-    @method_decorator(cache_page(60))
+    @method_decorator(cache_page(600))
     def retrieve(self, *args, **kwargs):
         return super(UserDetail, self).retrieve(*args, **kwargs)
