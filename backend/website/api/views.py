@@ -14,7 +14,7 @@ import json
 
 
 class CertViewSet(viewsets.ModelViewSet):
-    queryset = CERT.objects.all()
+    queryset = CERT.objects.all().order_by('granted_on').reverse()
     serializer_class = CertSerializer
     permission_classes = [UserModifyOrReadOnly]
 
@@ -66,7 +66,7 @@ class SkillViewSet(viewsets.ModelViewSet):
 
 
 class EXPViewSet(viewsets.ModelViewSet):
-    queryset = EXP.objects.all()
+    queryset = EXP.objects.all().order_by("end_date").reverse()
     serializer_class = EXPSerializer
     permission_classes = [UserModifyOrReadOnly]
 
@@ -92,7 +92,7 @@ class EXPViewSet(viewsets.ModelViewSet):
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
+    queryset = Project.objects.all().order_by("created_at").reverse()
     serializer_class = ProjectSerializer
     permission_classes = [UserModifyOrReadOnly]
 
