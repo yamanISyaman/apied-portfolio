@@ -6,7 +6,7 @@ class CertSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(),
     )
-    granted_on = serializers.DateField(format="%d/%m/%Y", input_formats=['%d/%m/%Y',])
+    granted_on = serializers.DateField(format="%d/%m/%Y")
     class Meta:
         model = CERT
         fields = '__all__'
@@ -32,8 +32,8 @@ class EXPSerializer(serializers.ModelSerializer):
         default=serializers.CurrentUserDefault(),
     )
 
-    start_date = serializers.DateField(format="%d/%m/%Y", input_formats=['%d/%m/%Y',])
-    end_date = serializers.DateField(format="%d/%m/%Y", input_formats=['%d/%m/%Y',])
+    start_date = serializers.DateField(format="%d/%m/%Y")
+    end_date = serializers.DateField(format="%d/%m/%Y")
     
     class Meta:
         model = EXP
@@ -46,7 +46,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(),
     )
-    created_at = serializers.DateField(format="%d/%m/%Y", input_formats=['%d/%m/%Y',])
+    created_at = serializers.DateField(format="%d/%m/%Y")
     class Meta:
         model = Project
         fields = '__all__'
