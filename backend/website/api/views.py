@@ -14,7 +14,7 @@ import json
 
 
 class CertViewSet(viewsets.ModelViewSet):
-    queryset = CERT.objects.all().order_by('granted_on').reverse()
+    queryset = CERT.objects.all()
     serializer_class = CertSerializer
     permission_classes = [UserModifyOrReadOnly]
 
@@ -22,7 +22,7 @@ class CertViewSet(viewsets.ModelViewSet):
     # filtering on user
     def get_queryset(self):
 
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user).order_by('granted_on').reverse()
 
 
     @method_decorator(cache_page(600))
@@ -66,7 +66,7 @@ class SkillViewSet(viewsets.ModelViewSet):
 
 
 class EXPViewSet(viewsets.ModelViewSet):
-    queryset = EXP.objects.all().order_by("end_date").reverse()
+    queryset = EXP.objects.all()
     serializer_class = EXPSerializer
     permission_classes = [UserModifyOrReadOnly]
 
@@ -74,7 +74,7 @@ class EXPViewSet(viewsets.ModelViewSet):
     # filtering on user
     def get_queryset(self):
 
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user).order_by("end_date").reverse()
 
 
     @method_decorator(cache_page(600))
@@ -92,7 +92,7 @@ class EXPViewSet(viewsets.ModelViewSet):
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all().order_by("created_at").reverse()
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [UserModifyOrReadOnly]
 
@@ -100,7 +100,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     # filtering on user
     def get_queryset(self):
 
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user).order_by("created_at").reverse()
 
 
     @method_decorator(cache_page(600))

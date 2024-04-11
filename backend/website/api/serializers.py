@@ -56,8 +56,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    certs = CertSerializer(many=True)
-    exps = EXPSerializer(many=True)
+    certs = serializers.SerializerMethodField('get_user_certs')
+    exps = serializers.SerializerMethodField('get_user_exps')
     projects = serializers.SerializerMethodField('get_user_projects')
     skills = SkillSerializer(many=True)
 
