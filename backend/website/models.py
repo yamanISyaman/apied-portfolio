@@ -25,6 +25,7 @@ class CERT(models.Model):
 
 
 class SKILL(models.Model):
+    order = models.BigIntegerField(unique=True, blank=True, null=True)
     title = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=50, blank=True)
     image = models.FileField(upload_to="skills/", blank=True)
