@@ -48,7 +48,7 @@ class SkillViewSet(viewsets.ModelViewSet):
     # filtering on user
     def get_queryset(self):
 
-        return self.queryset.filter(user=self.request.user).order('order')
+        return self.queryset.filter(user=self.request.user).order_by('order')
 
 
     @method_decorator(cache_page(600))
